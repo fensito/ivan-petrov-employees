@@ -1,0 +1,17 @@
+﻿<Window x:Class="Eployees_Ivan_Petrov.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eployees_Ivan_Petrov"
+        xmlns:controls="clr-namespace:Eployees_Ivan_Petrov.MVVM.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="800">
+    <Grid>
+        <Button Content="Browse" HorizontalAlignment="Left" Margin="29,77,0,0" Name="btnBrowseFile"  Click="btnBrowseFile_Click" VerticalAlignment="Top" Width="75"/>
+        <TextBox IsReadOnly="True"  HorizontalAlignment="Left" VerticalAlignment="Top" Name="fileLabel" RenderTransformOrigin="1.557,2.077" Margin="29,29,0,0" Width="509"/>
+        <StackPanel HorizontalAlignment="Left" Name="GridStackPanel" Height="308" Margin="147,77,0,0" VerticalAlignment="Top" Width="620">
+            <controls:EmployeesDataGrid x:Name="DataGrid" />
+        </StackPanel>
+    </Grid>
+</Window>
