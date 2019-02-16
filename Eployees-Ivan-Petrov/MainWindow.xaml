@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Eployees_Ivan_Petrov"
         xmlns:controls="clr-namespace:Eployees_Ivan_Petrov.MVVM.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="800">
+        Title="MainWindow" MaxHeight="700" MaxWidth="800" Height="700" Width="800">
     <Grid>
         <Button Content="Browse" HorizontalAlignment="Left" Margin="29,77,0,0" Name="btnBrowseFile"  Click="btnBrowseFile_Click" VerticalAlignment="Top" Width="75"/>
-        <TextBox IsReadOnly="True"  HorizontalAlignment="Left" VerticalAlignment="Top" Name="fileLabel" RenderTransformOrigin="1.557,2.077" Margin="29,29,0,0" Width="509"/>
+        <TextBox IsReadOnly="True"  HorizontalAlignment="Left" VerticalAlignment="Top" Name="fileLabel" RenderTransformOrigin="1.557,2.077" Margin="29,29,0,0" Width="738" Height="18"/>
         <StackPanel HorizontalAlignment="Left" Name="GridStackPanel" Height="308" Margin="147,77,0,0" VerticalAlignment="Top" Width="620">
             <controls:EmployeesDataGrid x:Name="DataGrid" />
         </StackPanel>
