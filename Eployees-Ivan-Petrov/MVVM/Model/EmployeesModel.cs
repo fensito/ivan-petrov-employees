@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using static Eployees_Ivan_Petrov.MVVM.DataTypes.EmployeeData;
 using Eployees_Ivan_Petrov.MVVM.Model;
 using System.Collections;
+using System.Windows;
 
 namespace Eployees_Ivan_Petrov.MVVM.Model
 {
@@ -14,56 +15,55 @@ namespace Eployees_Ivan_Petrov.MVVM.Model
 
         public void ReadXML(string filePath)
         {
-            //try
-            //{
-            var xdoc = XDocument.Load(filePath);
-
-            // Parsing Data via LINQ
-            var employees = from employee in xdoc.Descendants("Employee")
-                            select new
-                            {
-                                EployeeId = employee.Element("EmplID").Value,
-                                ProjectId = employee.Element("ProjectID").Value,
-                                DateFrom = employee.Element("DateFrom").Value,
-                                DateTo = employee.Element("DateTo").Value
-                            };
-
-            data = new ObservableCollection<Data>();
-
-            foreach (var employee in employees)
+            try
             {
-                DateTime dateTo;
-                bool success = DateTime.TryParse(employee.DateTo, out dateTo);
-                if (!success)
-                {
-                    dateTo = DateTime.Now;
-                }
+                var xdoc = XDocument.Load(filePath);
 
-                //Add data to object in DataStructure
-                data.Add(
-                    new Data
+                // Parsing Data via LINQ
+                var employees = from employee in xdoc.Descendants("Employee")
+                                select new
+                                {
+                                    EployeeId = employee.Element("EmplID").Value,
+                                    ProjectId = employee.Element("ProjectID").Value,
+                                    DateFrom = employee.Element("DateFrom").Value,
+                                    DateTo = employee.Element("DateTo").Value
+                                };
+
+                data = new ObservableCollection<Data>();
+
+                //
+                foreach (var employee in employees)
+                {
+                    DateTime dateTo;
+                    bool success = DateTime.TryParse(employee.DateTo, out dateTo);
+                    if (!success)
                     {
-                        DateFrom = DateTime.Parse(employee.DateFrom),
-                        DateTo = dateTo,
-                        EmplId = int.Parse(employee.EployeeId),
-                        ProjectId = int.Parse(employee.ProjectId)
-                    });
+                        dateTo = DateTime.Now;
+                    }
+
+                    //Add data to object in DataStructure
+                    data.Add(
+                        new Data
+                        {
+                            DateFrom = DateTime.Parse(employee.DateFrom),
+                            DateTo = dateTo,
+                            EmplId = int.Parse(employee.EployeeId),
+                            ProjectId = int.Parse(employee.ProjectId)
+                        });
+                }
             }
 
-
-            /* }
-             catch
-             {
-                 MessageBoxResult result = MessageBox.Show("An error occured ,Do you want to close this window?",
-                                           "Confirmation",
-                                           MessageBoxButton.YesNo,
-                                           MessageBoxImage.Question);
-                 if (result == MessageBoxResult.Yes)
-                 {
-                     Application.Current.Shutdown();
-                 }
-
-             }*/
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("An error occured ,Do you want to close this window?",
+                                          "Confirmation",
+                                          MessageBoxButton.YesNo,
+                                          MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Application.Current.Shutdown();
+                }
+            }
         }
 
         public IEnumerable GetFilteredEmployees()
@@ -85,7 +85,7 @@ namespace Eployees_Ivan_Petrov.MVVM.Model
                    )
                    .Take(2)
            }
-            ).SelectMany(g => g.Items);
+                ).SelectMany(g => g.Items);
             return employeesQuery;
         }
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+          <xs:element name="Employees">
+              <xs:complexType>
+                     <xs:sequence>
+                            <xs:element name="Employee" maxOccurs="unbounded">
+                                   <xs:complexType>
+                                          <xs:sequence>
+                                                 <xs:element name="EmplID" type="xs:int"></xs:element>
+                                                 <xs:element name="ProjectID" type="xs:int"></xs:element>
+                                                 <xs:element name="DateFrom" type="xs:date"></xs:element>
+                                                 <xs:element name="DateTo" type="xs:date"></xs:element>
+                                             </xs:sequence>
+                                      </xs:complexType>
+                               </xs:element>
+                        </xs:sequence>
+                 </xs:complexType>
+          </xs:element>
+   </xs:schema>

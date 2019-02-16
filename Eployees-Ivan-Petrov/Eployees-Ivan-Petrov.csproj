@@ -107,5 +107,8 @@
   <ItemGroup>
     <Folder Include="Temporary\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\XMLSchema.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
